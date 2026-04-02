@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060606;
+  --foreground: #f0f0f0;
+  --flame: #39FF14;
+  --flame-dim: #1a7a08;
+  --flame-glow: rgba(57, 255, 20, 0.15);
+  --card-bg: #0f0f0f;
+  --border: #1e1e1e;
+  --muted: #666666;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-flame: var(--flame);
+  --color-flame-dim: var(--flame-dim);
+  --color-card: var(--card-bg);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Flame glow utility */
+.flame-glow {
+  text-shadow: 0 0 20px rgba(57, 255, 20, 0.6), 0 0 40px rgba(57, 255, 20, 0.3);
+}
+
+.flame-box-glow {
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.3), 0 0 60px rgba(57, 255, 20, 0.1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--flame-dim);
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(57, 255, 20, 0.25);
+  color: #fff;
 }
