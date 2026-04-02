@@ -1,8 +1,66 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
+
+const team = [
+  {
+    name: "Kevin Sharpley",
+    role: "Founder / Chief Visionary",
+    photo: "/team/kevin-sharpley.jpg",
+    bio: "President and CEO of KijiK Multimedia, Kevin is an award-winning producer, writer, director and editor with 20+ years in the industry. Sundance Institute fellow, Miami Dade College Hall of Fame inductee (2014), and co-founder of the Screen Heat Miami podcast.",
+  },
+  {
+    name: "Gianfranco Bianchi",
+    role: "Creative Director",
+    photo: "/team/gianfranco-bianchi.jpg",
+    bio: "A versatile multimedia creator whose passion lives in animation. Led all art and animation on The Beach Chronicles — 2D, 3D, character design, and modeling — and has since expanded into AR/VR immersive experiences and mobile platforms.",
+  },
+  {
+    name: "Dean Lyon",
+    role: "VFX / Operations Chief",
+    photo: "/team/dean-lyon.jpg",
+    bio: "World-renowned VFX creator with 30+ years collaborating with cutting-edge directors and studios globally. Visual Effects Supervisor on The Lord of the Rings trilogy and hundreds of films, TV shows, and commercials. Regarded as a futurist by industry peers.",
+  },
+  {
+    name: "Daniel Abril",
+    role: "Director",
+    photo: "/team/daniel-abril.jpg",
+    bio: "Director, writer, and DP with 18+ years of credits across ABC, Hulu, TLC, MTV, Discovery, Netflix, Vice, and more. Writer-director of 'Memories of a Failed Youth' (Cannes Short Film Corner) and 'Peter Panties' (Slamdance Emergence official selection).",
+  },
+  {
+    name: "Michael Arcos",
+    role: "Director",
+    photo: "/team/michael-arcos.png",
+    bio: "Miami-raised, Ecuadorian-American filmmaker exhibiting work internationally since 2014. His film 'Valerio's Day Out' won Best Director-Short Film at Sundance. His debut 'This Is My Favorite Mural' screened at Miami and 18 festivals worldwide.",
+  },
+  {
+    name: "Judit Gonzalez Velazquez",
+    role: "Producer / Editor",
+    photo: "/team/judit-gonzalez.jpg",
+    bio: "Producer, director, videographer and editor known as 'Julez'. Collaborator with Emmy and Oscar winners including Carlos Rafael Rivera (The Queen's Gambit), Tarell Alvin McCraney (Moonlight), and Jimmy Jean Louis. Former US Army veteran and trained journalist at Ruptly TV.",
+  },
+  {
+    name: "Antonio Sharpley",
+    role: "Communications Chief",
+    photo: "/team/antonio-sharpley.jpg",
+    bio: "Specializes in social media strategy, contract negotiations, project budgeting, and event planning. Production team member for The Beach Chronicles premiere at Miami International Film Festival. Two-time Academic All-American (2009, 2011).",
+  },
+  {
+    name: "Ashley Marks",
+    role: "Creative Coordinator",
+    photo: "/team/ashley-marks.jpg",
+    bio: "Brings entertainment industry experience spanning talent coordination (Miami Ink, TLC), celebrity styling (Grammy Awards 2011, Nicki Minaj), and marketing. Led talent operations for The Beach Chronicles premiere at the 2012 Miami International Film Festival.",
+  },
+  {
+    name: "Jamar Jordan",
+    role: "Legal",
+    photo: "/team/jamar-jordan.jpg",
+    bio: "Florida Coastal School of Law graduate (1999) and in-house legal counsel for KijiK Multimedia. Runs a boutique entertainment law practice in Miami focusing on Unauthorized Publication of Likeness and entertainment contracts. Screenwriter and board member of CineVisun.",
+  },
+];
 
 const pressItems = [
   {
@@ -150,7 +208,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder section */}
+      {/* Team grid */}
       <section className="border-t border-[#1e1e1e] bg-[#0a0a0a] py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
@@ -158,33 +216,54 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="max-w-4xl"
+            className="mb-14"
           >
             <span className="text-[#39FF14] text-xs tracking-[0.4em] uppercase mb-6 block">
-              Leadership
+              The Team
             </span>
             <h2
-              className="text-[clamp(2rem,4vw,3.5rem)] text-white leading-none mb-6"
+              className="text-[clamp(2rem,4vw,3.5rem)] text-white leading-none"
               style={{ fontFamily: "var(--font-bebas), sans-serif" }}
             >
-              Kevin Sharpley
-              <br />
-              <span className="text-[#333]">Founder & Creative Director</span>
+              The People Behind the Fire
             </h2>
-            <p className="text-[#666] text-lg leading-relaxed mb-6">
-              Kevin Sharpley is an award-winning storyteller, producer, and creative director
-              with over 20 years in the multimedia industry. He has arranged and mediated
-              panels at the Miami Media and Film Market featuring 14-time Grammy Award winning
-              composers, published work on the Sundance Institute website, and led KijiK
-              through festival wins on every continent.
-            </p>
-            <p className="text-[#666] text-base leading-relaxed">
-              Kevin&apos;s work has brought together legends including Danny Glover, Daryl Hannah,
-              Michael Chiklis, Tommy Flanagan, Dave Stewart, Peter Gabriel, Maria Bello, Josh
-              Brolin, Wyclef Jean, Lenny Kravitz, Tyson Beckford, and many more under one
-              creative vision: The Fire Inside.
-            </p>
           </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#1e1e1e]">
+            {team.map((member, i) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.07 }}
+                className="bg-[#060606] p-0 group"
+              >
+                <div className="relative overflow-hidden aspect-[3/4] bg-[#111]">
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    fill
+                    className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060606] via-transparent to-transparent opacity-80" />
+                </div>
+                <div className="p-6 border-t border-[#1e1e1e]">
+                  <h3
+                    className="text-white text-2xl mb-0.5 leading-tight"
+                    style={{ fontFamily: "var(--font-bebas), sans-serif" }}
+                  >
+                    {member.name}
+                  </h3>
+                  <p className="text-[#39FF14] text-[10px] tracking-[0.35em] uppercase mb-4">
+                    {member.role}
+                  </p>
+                  <p className="text-[#555] text-sm leading-relaxed">{member.bio}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
